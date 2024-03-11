@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -49,6 +49,9 @@ export default function Signin() {
           onChange={handleChange}
         />
         <button type="submit">Sign In</button>
+        <p>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </form>
     </>
   );
