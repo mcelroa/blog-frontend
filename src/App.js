@@ -1,9 +1,9 @@
 // App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Signin from "./Signin";
-import Signup from "./Signup";
-import Dashboard from "./Dashboard";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
