@@ -15,10 +15,9 @@ const Signup = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Logic for handling form submission, e.g., sending data to backend
     try {
-      const res = await axios.post("http://localhost:5000/api/signup", formData);
-      console.log("Signup Success:", res.data);
+      const response = await axios.post("http://localhost:5000/api/signup", formData);
+      console.log("Signup Success:", response.data);
       navigate("/dashboard");
     } catch (error) {
       setError(error.response.data.msg);
