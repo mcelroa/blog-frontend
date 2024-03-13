@@ -20,7 +20,9 @@ export default function Signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/signin", formData);
+      const response = await axios.post("http://localhost:5000/api/signin", formData, {
+        withCredentials: true,
+      });
       console.log("Signin Success:", response.data);
       navigate("/dashboard");
       // redirect to dash
