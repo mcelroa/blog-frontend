@@ -16,15 +16,15 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/signup", formData);
-      console.log("Signup Success:", response.data);
-      navigate("/dashboard");
+      const response = await axios.post("http://localhost:5000/api/signup", formData, {
+        withCredentials: true,
+      });
+      if (response.status === 201) {
+        navigate("/dashboard");
+      }
     } catch (error) {
       setError(error.response.data.msg);
     }
-
-    // After successful signup, navigate to dashboard
-    navigate("/dashboard");
   };
 
   return (

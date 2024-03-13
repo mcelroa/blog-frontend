@@ -20,10 +20,9 @@ export default function Signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/signin", formData, {
+      await axios.post("http://localhost:5000/api/signin", formData, {
         withCredentials: true,
       });
-      console.log("Signin Success:", response.data);
       navigate("/dashboard");
       // redirect to dash
     } catch (error) {
@@ -52,7 +51,7 @@ export default function Signin() {
         />
         <button type="submit">Sign In</button>
         <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/">Sign Up</Link>
         </p>
       </form>
     </>
