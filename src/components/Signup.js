@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import get from "lodash/get";
+import "../styles/signin.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -23,42 +25,62 @@ const Signup = () => {
         navigate("/dashboard");
       }
     } catch (error) {
-      setError(error.response.data.msg);
+      const errorMessage =
+        get(error, "response.data.msg", error.message) || "An unknown error occurred.";
+      setError(errorMessage);
     }
   };
 
   return (
-    <div className="container">
-      <h2>Sign Up</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+    <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
+      <div className="d-flex justify-content-center col-12 col-md-8 col-lg-6 col-xl-5">
+        <div className="card">
+          <div className="card-body p-5 text-center">
+            <h2>Sign Up</h2>
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            )}
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label className="form-label" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="form-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="form-control"
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-primary mt-3 mb-3">
+                Sign Up
+              </button>
+            </form>
+            <p>
+              Already have an account? <Link to="/signin">Sign In</Link>
+            </p>
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/signin">Sign In</Link>
-      </p>
+      </div>
     </div>
   );
 };

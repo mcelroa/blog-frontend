@@ -22,18 +22,28 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h2>Posts</h2>
+    <div>
+      {/* Header */}
+      <div className="mb-5 mt-5 d-flex justify-content-center">
+        <h2 className="display-4">Posts</h2>
+      </div>
+      {/* End Header */}
 
+      {/* Posts */}
+      <div className="d-flex flex-column mb-3 px-5">
         {posts.map((post) => {
           return <Post key={post._id} post={post} />;
         })}
+      </div>
+      {/* End Posts */}
 
+      {/* Footer */}
+      <div className="d-flex justify-content-center">
         <Link to="/createPost">
-          <button>Create Post</button>
+          <button className="btn btn-primary">Create Post</button>
         </Link>
       </div>
-    </>
+      {/* End footer */}
+    </div>
   );
 }
